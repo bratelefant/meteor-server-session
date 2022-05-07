@@ -14,6 +14,12 @@ Now on the server side, use Session values like so:
 
     console.log(Session.get("editing"))
 
+If you like to prevent some key from persist sessions, you can configure this in the `Meteor.startup()` hook on your meteor server:
+
+    Session.configure({
+        dontPersist: ["editing"]
+    })
+
 # How is this implemented?
 
 This package is using a `Tracker.autorun` on the client side to store all session key-value-pairs in the users profile.
