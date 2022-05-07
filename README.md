@@ -10,9 +10,9 @@ In your client script, be sure to set defaults for all Session keys, even undefi
 
 Now on the server side, use Session values like so:
 
-    import { Session } from "meteor/bratelefant:meteor-server-session"
+    import { Session } from "meteor/bratelefant:server-session";
 
-    console.log(Session.get("editing))
+    console.log(Session.get("editing"))
 
 # How is this implemented?
 
