@@ -23,8 +23,13 @@ Tracker.autorun(() => {
   if (Session.get("bratelefant-server-sessions-ok")) {
     Meteor.isDevelopment && console.log("Server session data is ready");
     Meteor.isDevelopment &&
-      console.log("Session key-values, including non persistent values", keyvalues);
-    Meteor.call("bratelefant.server.setSession", keyvalues);
+      console.log(
+        "Session key-values, including non persistent values",
+        keyvalues
+      );
+    Meteor.call("bratelefant.server.setSession", keyvalues, (err, res) => {
+      if (err) console.warn(err);
+    });
     // Otherwise try to restore it from previous session
   } else {
     Session.debug &&
@@ -39,7 +44,11 @@ Tracker.autorun(() => {
           key !== "" && Session.set(key, Meteor.user()?.profile?.session[key])
       );
       Session.set("bratelefant-server-sessions-ok", true);
+      // otherwise: session not restorable (i.e. not present in profile) and session not ready: store keyvalues
     } else {
+      Meteor.call("bratelefant.server.setSession", keyvalues, (err, res) => {
+        if (err) console.warn(err);
+      });
     }
   }
 });

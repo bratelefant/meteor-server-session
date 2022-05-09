@@ -21,6 +21,7 @@ Session.configure = ({ dontPersist, debug }) => {
 Meteor.methods({
   "bratelefant.server.setSession"(keyvalues) {
     check(keyvalues, Object);
+    this.unblock();
 
     if (!Meteor.user()) throw new Meteor.Error("No user present.");
 
