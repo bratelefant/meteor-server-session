@@ -23,7 +23,7 @@ Meteor.methods({
     check(keyvalues, Object);
     this.unblock();
 
-    if (!Meteor.user()) throw new Meteor.Error("No user present.");
+    if (!Meteor.user()) return;
 
     Meteor.isDevelopment &&
       console.log("Removing non persistent keys", Session.dontPersist);
