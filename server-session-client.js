@@ -4,12 +4,12 @@ import { Session } from "meteor/session";
 
 Tracker.autorun(() => {
   const keyvalues = {};
+  const serverkeys = Meteor.settings.public.bratelefant.serverkeys || [];
 
+  Meteor.isDevelopment && console.log("Server Session autorun triggered.");
   Session.setDefault("bratelefant-server-sessions-ok", false);
 
-  const keys = Object.keys(Session.keys).filter(
-    (i) => i !== "bratelefant-server-sessions-ok"
-  );
+  const keys = serverkeys.filter((i) => i !== "bratelefant-server-sessions-ok");
 
   Meteor.isDevelopment && console.log("got these keys", keys);
 

@@ -4,6 +4,16 @@ Now you can use `Session.get(key)` on the meteor server side. As a side effect, 
 
 # How to use
 
+Define the Sessions keys to be mirrored to the Server in `settings.json`:
+
+    { 
+        "public" : {
+            "bratelefant" : {                
+                    "serverkeys": ["key1", "key2"]
+            }
+        }
+    }
+
 In your client script, be sure to set defaults for all Session keys, even undefined ones.
 
     Session.setDefault("editing", undefined)
