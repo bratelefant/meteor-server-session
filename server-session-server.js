@@ -31,8 +31,6 @@ Meteor.methods({
       delete keyvalues[key];
     });
 
-    Meteor.isDevelopment && console.log("Server sessions setting ", keyvalues);
-
     Meteor.users.update(Meteor.user()._id, {
       $set: { "profile.session": keyvalues },
     });
