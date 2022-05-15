@@ -1,6 +1,6 @@
 Package.describe({
   name: 'bratelefant:server-session',
-  version: '0.1.0',
+  version: '0.2.0',
   // Brief, one-line summary of the package.
   summary: 'Read meteor Session variables on the server side',
   // URL to the Git repository containing the source code for this package.

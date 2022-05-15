@@ -2,9 +2,21 @@ import { Meteor } from "meteor/meteor";
 import { Tracker } from "meteor/tracker";
 import { Session } from "meteor/session";
 
+export const ServerSession = {};
+
+ServerSession.serverkeys = [];
+
+/**
+ * Use this to configure Server Session keys during startup of the client
+ * @param {[String]} keys Store those keys on the server side
+ */
+ServerSession.setServerKeys = (keys) => {
+  ServerSession.serverkeys = keys;
+};
+
 Tracker.autorun(() => {
   const keyvalues = {};
-  const serverkeys = Meteor.settings.public.bratelefant.serverkeys || [];
+  const serverkeys = ServerSession.serverkeys || [];
 
   Meteor.isDevelopment && console.log("Server Session autorun triggered.");
   Session.setDefault("bratelefant-server-sessions-ok", false);
